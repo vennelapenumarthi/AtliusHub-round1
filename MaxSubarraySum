@@ -1,0 +1,32 @@
+
+//the approach i will be using is Kadane's Algorithm this helps to decrease the time complexity
+// the time complexity of this approach is O(N)
+import java.util.*;
+
+public class MaxSub {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int nums[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+        MaxSub maxsub = new MaxSub();
+        int res = maxsub.maxSum(nums);
+        System.out.println(res);
+    }
+
+    public int maxSum(int[] nums) {
+        int n = nums.length;
+        int max = Integer.MIN_VALUE;
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
+            max = Math.max(max, sum);
+            if (sum < 0) {// in case of negative values in the array
+                sum = 0;
+            }
+        }
+        return max;
+    }
+}
