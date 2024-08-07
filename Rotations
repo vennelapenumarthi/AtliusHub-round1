@@ -1,0 +1,39 @@
+
+// rotate array for k positions
+//space complexity is O(1)
+//used reverse algorithm with recursion
+import java.util.*;
+
+public class Rotation {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int nums[] = new int[n];
+        for (int i = 0; i < n; i++)
+            nums[i] = sc.nextInt();
+        int k = sc.nextInt();
+        Rotation rotate = new Rotation();
+        rotate.rotateK(nums, k);
+        for (int num : nums) {
+            System.out.print(num + " ");
+        }
+    }
+
+    public void rotateK(int[] nums, int k) {
+        int n = nums.length;
+        k = k % n;// if k is larger
+        rev(nums, 0, n - 1);// reverse entire array
+        rev(nums, 0, k - 1);// reverse k elements
+        rev(nums, k, n - 1);// remaining elements
+    }
+
+    public void rev(int nums[], int i, int j) {
+        while (i < j) {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+            i++;
+            j--;
+        }
+    }
+}
